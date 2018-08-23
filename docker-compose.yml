@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+
+  lint:
+    image: replicated/dockerfilelint
+    working_dir: /lamp
+    volumes: [ '.:/lamp' ]
+    command: [ '2.5/Dockerfile' ]
+
+  mybackup25:
+    build: ./2.5
+    ports: [ '8025:80' ]
