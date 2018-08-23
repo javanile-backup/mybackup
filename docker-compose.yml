@@ -4,10 +4,12 @@ services:
 
   lint:
     image: replicated/dockerfilelint
-    working_dir: /lamp
-    volumes: [ '.:/lamp' ]
+    working_dir: /src
+    volumes: [ '.:/src' ]
     command: [ '2.5/Dockerfile' ]
 
   mybackup25:
     build: ./2.5
+    env_file: [ 'mybackup.env' ]
     ports: [ '8025:80' ]
+    volumes: [ './test:/var/www/html/mybackup/test' ]
