@@ -15,7 +15,10 @@ RUN apt-get update \
 
 ## Download
 RUN curl -o mb.zip -SL ${MB_SRC}/phpMyBackupPro%20${MB_VER}/phpMyBackupPro-${MB_VER}.zip \
- && unzip -q mb && rm mb.zip && mv phpMyBackupPro-${MB_VER} mybackup
+ && unzip -q mb && rm mb.zip && mv phpMyBackupPro-${MB_VER} mybackup \
+ && mv mybackup/definitions.php mybackup/definitions.override.php \
+ && chmod 777 mybackup/global_conf.php mybackup/export
+COPY definitions.php mybackup/definitions.php
 
 ## Running
 COPY foreground.sh /usr/local/bin/
